@@ -28,15 +28,15 @@ Core capabilities:
 These snapshots show the core user flow and key interface areas.
 
 ### 1. Dashboard and Task Flow
-![Dashboard and Task Flow](docs/screenshots/home.png)
+![Dashboard and Task Flow](https://raw.githubusercontent.com/marcelocoutinho11/TO-DO-LIST/main/docs/screenshots/home.png)
 Main workspace with profile context, task list interactions, quick add controls, and focus CTA.
 
 ### 2. Analytics and Progress Tracking
-![Analytics and Progress Tracking](docs/screenshots/calendar.png)
+![Analytics and Progress Tracking](https://raw.githubusercontent.com/marcelocoutinho11/TO-DO-LIST/main/docs/screenshots/calendar.png)
 Completion metrics, streak visibility, and weekly activity visualization for accountability.
 
 ### 3. Calendar Planning View
-![Calendar Planning View](docs/screenshots/mobile.png)
+![Calendar Planning View](https://raw.githubusercontent.com/marcelocoutinho11/TO-DO-LIST/main/docs/screenshots/mobile.png)
 Month-level planning surface with day cells, completion signals, and fast navigation.
 
 ## Tech Used
