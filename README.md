@@ -1,93 +1,77 @@
-TO-DO APP - PROJECT NOTES AND GITHUB GUIDE
+# TO-DO APP
 
-Overview
-This is a profile-based task management app built with HTML, CSS, and JavaScript.
-It includes:
-- Up to 5 user profiles
-- Daily tasks with categories and priorities
-- Calendar view with task chips per day
-- Completion color levels in calendar (red, amber, green)
-- Analytics dashboard
-- Mobile sidebar navigation
-- Music page with source switching
+A portfolio-ready productivity app built with vanilla HTML, CSS, and JavaScript.
 
-Project Structure
-- public/index.html: app layout and pages
-- public/styles.css: styling and responsive/mobile behavior
-- src/scripts.js: app logic (tasks, profiles, calendar, analytics, music)
-- QUICK_START.md: quick usage notes
+## What I Built
+This project is a multi-profile task management web app focused on practical UX, mobile usability, and progress visibility.
 
-How the Data is Saved
-- Data is stored in browser local storage.
-- Each profile has separate task data.
-- Data remains on the same browser/device unless storage is cleared.
+It supports:
+- Profile-specific task spaces (up to 5 users)
+- Daily task tracking with categories, priorities, and due dates
+- Calendar day chips with completion status and task previews
+- Analytics dashboard for completion and activity insights
+- Mobile-first navigation (hamburger menu + responsive behavior)
+- Built-in focus music presets (YouTube Lo-fi, YouTube Chill Gang, SoundCloud, 5FM)
 
-Run Locally
-Option A (recommended): VS Code Live Server
-1. Open the folder in VS Code.
-2. Open public/index.html.
-3. Right-click and choose Open with Live Server.
+## Features
+- Multi-profile local persistence with isolated task data
+- Task CRUD: create, complete, delete, and filter
+- Calendar enhancements:
+   - Status color levels (red/amber/green)
+   - Up to 8 task chips per day
+   - Clickable chips to jump to exact task details
+- Completed task checkmarks directly in calendar chips
+- Legend for interpreting calendar statuses and chip meaning
+- Responsive layout for desktop and mobile
 
-Option B: any static file server
-You can host this as static files because there is no required backend for the main app.
+## Screenshots
+Add screenshots to a `docs/screenshots` folder and update links below.
 
-Mobile Notes
-- Sidebar is hidden on mobile and opens from the hamburger button.
-- Music dock is hidden on mobile unless Music page is active.
-- Calendar task chips are clickable and can jump to selected task details.
+![Home Page](docs/screenshots/home.png)
+![Calendar View](docs/screenshots/calendar.png)
+![Mobile Navigation](docs/screenshots/mobile.png)
 
-Calendar Legend
-- Red day: 0% done
-- Amber day: partial completion
-- Green day: 100% done
-- Task chip with checkmark means completed task
+## Tech Used
+- HTML5
+- CSS3 (responsive design, dark mode support)
+- JavaScript (ES6+, DOM manipulation, localStorage)
+- Git + GitHub for source control
 
-Publish to GitHub (first time)
-1. Install Git
-- Download from https://git-scm.com/download/win
-- Complete install and restart terminal/VS Code
+## What I Learned
+- How to structure a frontend app with clear separation of markup, style, and logic
+- How to build responsive/mobile-first UI behavior and debug CSS overrides
+- How to model per-profile data in localStorage safely and predictably
+- How to evolve feature sets iteratively with clean commits and documentation
+- How to publish and maintain a portfolio project with GitHub
 
-2. Create a new empty repository on GitHub
-- Log in to GitHub
-- Click New repository
-- Name example: todo-app
-- Leave it empty (no README from GitHub page)
-- Click Create repository
+## Project Structure
+- `public/index.html` - UI structure and pages
+- `public/styles.css` - styles, responsiveness, and component states
+- `src/scripts.js` - app logic for tasks, profiles, calendar, analytics, and music
+- `LEARNING_NOTES.md` - growth log and engineering reflection
+- `GITHUB_DEPLOY_PLAYBOOK.md` - beginner-friendly deployment steps
 
-3. Open terminal in this project folder and run:
+## Run Locally
+### Option A: VS Code Live Server (recommended)
+1. Open this folder in VS Code.
+2. Open `public/index.html`.
+3. Right-click and choose **Open with Live Server**.
 
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-   git push -u origin main
+### Option B: Any static server
+This app works as static files (no required backend for core features).
 
-Replace YOUR_USERNAME and YOUR_REPO_NAME with your values.
+## Data Storage Notes
+- Uses browser localStorage.
+- Profile data is isolated per profile ID.
+- Data stays on the same browser/device unless storage is cleared.
 
-If you use GitHub Desktop instead
-1. Open GitHub Desktop
-2. Add local repository from this folder
-3. Commit all changes
-4. Publish repository
+## Security Notes
+- No secrets should be committed to this repository.
+- This is a frontend/localStorage app (not production authentication).
+- For stronger security, move profiles/auth and data to a backend service.
 
-Suggested Learning Notes (for your knowledge growth)
-- Learn Git basics: init, add, commit, push, pull, branch
-- Learn web app security basics for frontend apps
-- Learn how local storage differs from backend database storage
-- Learn deployment with HTTPS using Netlify or Vercel
+## Growth Log
+See `LEARNING_NOTES.md` for ongoing engineering progress and lessons learned.
 
-Simple Improvement Roadmap
-1. Add backend auth for true account security
-2. Add cloud database for shared multi-device sync
-3. Add password reset and role-based access
-4. Add tests for task and calendar logic
-5. Add CI pipeline for automatic checks
-
-Troubleshooting
-- If mobile menu does not appear, hard refresh browser cache.
-- If calendar chips look stale, switch month forward/back once.
-- If tasks are missing, verify active profile in the top-left profile area.
-
-License
-Use for learning and personal projects.
+## License
+This project is licensed under the MIT License. See `LICENSE`.
