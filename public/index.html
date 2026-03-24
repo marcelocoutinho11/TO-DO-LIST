@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tasks - Advanced To Do App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Hamburger menu (mobile) -->
+    <button id="menuToggle" class="menu-toggle">&#9776;</button>
+    <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
+
+    <!-- Profile Chooser Overlay -->
+    <div id="profileChooser" class="profile-chooser-overlay hidden">
+        <div class="profile-chooser-box">
+            <h2>👤 Who's using this app?</h2>
+            <p class="profile-chooser-sub">Select your profile or create a new one (max 5)</p>
+            <div id="profileCards" class="profile-cards"></div>
+            <div id="profileAddArea" class="profile-add-area">
+                <input id="newProfileName" type="text" class="profile-name-input" placeholder="Your name" maxlength="20">
+                <button class="btn-profile-create" id="createProfileBtn">+ Create</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="profile">
+                <div class="profile-avatar" id="profileAvatar">?</div>
+                <h3 id="profileName">Select Profile</h3>
+                <p class="streak" id="streakCounter">🔥 0 day streak</p>
+                <button class="btn-switch-profile" id="switchProfileBtn">⇄ Switch Profile</button>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-page="home">
+                    <span class="icon">🏠</span> Home
+                </a>
+                <a href="#" class="nav-item" data-page="tasks">
+                    <span class="icon">✓</span> Tasks
+                </a>
+                <a href="#" class="nav-item" data-page="calendar">
+                    <span class="icon">📅</span> Calendar
+                </a>
+                <a href="#" class="nav-item" data-page="analytics">
+                    <span class="icon">📊</span> Analytics
+                </a>
+                <a href="#" class="nav-item" data-page="music">
+                    <span class="icon">🎵</span> Music
+                </a>
+            </nav>
+
+            <div class="bottom-icons">
+                <button class="icon-btn" id="themeToggle" title="Toggle Dark Mode">🌙</button>
+                <button class="icon-btn" id="exportBtn" title="Export Tasks">📥</button>
+                <button class="icon-btn" id="settingsBtn" title="Settings">⚙️</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- HOME PAGE -->
+            <div id="home-page" class="page active">
+                <div class="header">
+                    <div>
+                        <h1>My Tasks</h1>
+                        <p class="date" id="date">Tuesday, March 24</p>
+                        <p class="motto">Stay focused and get things done!</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="icon-btn">🔔</button>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <span class="stat-number" id="todayCount">0</span>
+                        <span class="stat-label">Today</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="completedCount">0</span>
+                        <span class="stat-label">Completed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="priorityCount">0</span>
+                        <span class="stat-label">Priority</span>
+                    </div>
+                </div>
+
+                <!-- Tasks Container -->
+                <div class="tasks-container">
+                    <div class="task-card featured">
+                        <h3>Today's Focus</h3>
+                        <p>Complete your most important tasks first!</p>
+                    </div>
+
+                    <div id="tasks-list">
+                        <!-- Tasks will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Add New Task -->
+                <div class="add-task-form">
+                    <input 
+                        type="text" 
+                        id="taskInput" 
+                        class="task-input" 
+                        placeholder="Add a new task..."
+                    >
+                    <div class="task-options">
+                        <select id="categorySelect" class="task-select">
+                            <option value="work">💼 Work</option>
+                            <option value="personal">👤 Personal</option>
+                            <option value="health">💪 Health</option>
+                        </select>
+                        <select id="prioritySelect" class="task-select">
+                            <option value="low">🟢 Low</option>
+                            <option value="medium">🟡 Medium</option>
+                            <option value="high">🔴 High</option>
+                        </select>
+                        <input type="date" id="dueDateInput" class="task-select">
+                        <button class="btn-add" id="addTaskBtn">Add Task</button>
+                    </div>
+                </div>
+
+                <!-- Start Next Task Button -->
+                <button class="btn-primary" id="startNextBtn">Start Next Task →</button>
+
+                <!-- Footer -->
+                <div class="footer">
+                    <span>Keep pushing forward! 💪</span>
+                    <span id="task-count">0 tasks today</span>
+                </div>
+            </div>
+
+            <!-- TASKS PAGE -->
+            <div id="tasks-page" class="page">
+                <div class="header">
+                    <h1>All Tasks</h1>
+                </div>
+
+                <!-- Filter Bar -->
+                <div class="filter-bar">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="work">💼 Work</button>
+                    <button class="filter-btn" data-filter="personal">👤 Personal</button>
+                    <button class="filter-btn" data-filter="health">💪 Health</button>
+                    <button class="filter-btn" data-filter="completed">✓ Completed</button>
+                </div>
+
+                <div id="all-tasks-container" class="tasks-container">
+                    <!-- All tasks will load here -->
+                </div>
+            </div>
+
+            <!-- CALENDAR PAGE -->
+            <div id="calendar-page" class="page">
+                <div class="header">
+                    <h1>Calendar</h1>
+                </div>
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <button id="prevMonth">←</button>
+                        <h2 id="currentMonth">March 2026</h2>
+                        <button id="nextMonth">→</button>
+                    </div>
+                    <div class="calendar-legend" aria-label="Calendar legend">
+                        <span class="legend-item"><span class="legend-dot legend-red"></span>0% done</span>
+                        <span class="legend-item"><span class="legend-dot legend-amber"></span>Partial</span>
+                        <span class="legend-item"><span class="legend-dot legend-green"></span>100% done</span>
+                        <span class="legend-item"><span class="legend-chip">✓ Task</span>Completed task</span>
+                        <span class="legend-item"><span class="legend-chip legend-chip-pending">Task</span>Pending task</span>
+                    </div>
+                    <div class="calendar-weekdays">
+                        <div>Sun</div>
+                        <div>Mon</div>
+                        <div>Tue</div>
+                        <div>Wed</div>
+                        <div>Thu</div>
+                        <div>Fri</div>
+                        <div>Sat</div>
+                    </div>
+                    <div id="calendar-days" class="calendar-days">
+                        <!-- Calendar days will be generated here -->
+                    </div>
+                </div>
+
+                <!-- Selected Date Tasks -->
+                <div class="selected-date-tasks">
+                    <h3 id="selectedDateTitle">Tasks for Today</h3>
+                    <div id="selected-date-tasks-list" class="tasks-container">
+                        <!-- Tasks for selected date will appear here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- ANALYTICS PAGE -->
+            <div id="analytics-page" class="page">
+                <div class="header">
+                    <h1>📊 Analytics & Progress</h1>
+                </div>
+
+                <div class="analytics-container">
+                    <!-- Overview Cards -->
+                    <div class="analytics-grid">
+                        <div class="analytics-card">
+                            <h4>Total Tasks</h4>
+                            <p class="big-number" id="totalTasksAnalytics">0</p>
+                        </div>
+                        <div class="analytics-card">
+                            <h4>Completed</h4>
+                            <p class="big-number" id="completedTasksAnalytics">0</p>
+                        </div>
+                        <div class="analytics-card">
+                            <h4>Completion Rate</h4>
+                            <p class="big-number" id="completionRateAnalytics">0%</p>
+                        </div>
+                        <div class="analytics-card">
+                            <h4>Current Streak</h4>
+                            <p class="big-number" id="streakAnalytics">0 🔥</p>
+                        </div>
+                    </div>
+
+                    <!-- Charts -->
+                    <div class="charts-container">
+                        <!-- Category Breakdown -->
+                        <div class="chart-card">
+                            <h4>Tasks by Category</h4>
+                            <div class="category-chart">
+                                <div class="category-item">
+                                    <span>💼 Work</span>
+                                    <div class="progress-bar">
+                                        <div id="workBar" class="progress-fill" style="width: 0%"></div>
+                                    </div>
+                                    <span id="workCount">0</span>
+                                </div>
+                                <div class="category-item">
+                                    <span>👤 Personal</span>
+                                    <div class="progress-bar">
+                                        <div id="personalBar" class="progress-fill" style="width: 0%"></div>
+                                    </div>
+                                    <span id="personalCount">0</span>
+                                </div>
+                                <div class="category-item">
+                                    <span>💪 Health</span>
+                                    <div class="progress-bar">
+                                        <div id="healthBar" class="progress-fill" style="width: 0%"></div>
+                                    </div>
+                                    <span id="healthCount">0</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Priority Breakdown -->
+                        <div class="chart-card">
+                            <h4>Tasks by Priority</h4>
+                            <div class="priority-chart">
+                                <div class="priority-item">
+                                    <span>🔴 High</span>
+                                    <span id="highPriorityCount">0</span>
+                                </div>
+                                <div class="priority-item">
+                                    <span>🟡 Medium</span>
+                                    <span id="mediumPriorityCount">0</span>
+                                </div>
+                                <div class="priority-item">
+                                    <span>🟢 Low</span>
+                                    <span id="lowPriorityCount">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- This Week Stats -->
+                    <div class="chart-card full-width">
+                        <h4>This Week's Activity</h4>
+                        <div id="weeklyChart" class="weekly-chart">
+                            <!-- Generated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MUSIC PAGE -->
+            <div id="music-page" class="page">
+                <div class="header">
+                    <div>
+                        <h1>🎵 Focus Music</h1>
+                        <p class="subtitle">Free music options inside your workspace</p>
+                    </div>
+                    <span id="musicSourceBadge" class="music-source-badge">Source: YouTube</span>
+                </div>
+
+                <div class="music-container">
+                    <div class="music-source-grid">
+                        <button class="btn-music-source" id="youtubeBtn">▶️ YouTube Lo-fi</button>
+                        <button class="btn-music-source" id="youtubeChillGangBtn">▶️ YouTube Chill Gang</button>
+                        <button class="btn-music-source" id="soundcloudBtn">☁️ SoundCloud Chill</button>
+                        <button class="btn-music-source" id="radio9800Btn">📻 5FM (SA)</button>
+                    </div>
+                    <p id="musicCustomLabel" class="music-custom-label">YouTube URL</p>
+                    <div class="music-custom-row">
+                        <input id="youtubeCustomInput" class="music-custom-input" type="text" placeholder="Paste YouTube link (video, live, or playlist)">
+                        <button class="btn-music-source" id="loadYoutubeBtn">Load Link</button>
+                    </div>
+                    <div class="music-save-row">
+                        <button class="btn-music-save" id="saveYoutubeBtn">Save as YouTube Default</button>
+                        <button class="btn-music-save" id="saveYoutubeChillGangBtn">Save as Chill Gang Default</button>
+                        <button class="btn-music-save" id="saveSoundcloudBtn">Save as SoundCloud Default</button>
+                        <button class="btn-music-save" id="saveRadio9800Btn">Save as 5FM URL</button>
+                    </div>
+                    <p id="musicHint" class="music-hint">Tip: Pick a source above. The mini player stays active while you switch tabs.</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <div id="musicDock" class="music-dock">
+        <div class="music-dock-header">
+            <span id="musicDockLabel">Now playing: YouTube</span>
+        </div>
+        <audio id="musicAudio" class="music-audio" controls preload="none"></audio>
+        <iframe
+            id="musicFrame"
+            title="Persistent music player"
+            src="https://www.youtube-nocookie.com/embed/jfKfPfyJRdk?autoplay=0&rel=0&modestbranding=1"
+            allow="autoplay; encrypted-media"
+            referrerpolicy="strict-origin-when-cross-origin"
+            loading="lazy"
+        ></iframe>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Settings</h2>
+            <div class="settings-group">
+                <label>
+                    <input type="checkbox" id="notificationsToggle" checked>
+                    Enable Notifications
+                </label>
+                <label>
+                    <input type="checkbox" id="soundToggle" checked>
+                    Sound Effects
+                </label>
+                <label>
+                    Enable Dark Mode by Default
+                    <input type="checkbox" id="darkModeDefault">
+                </label>
+            </div>
+            <button class="btn-add" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- Reminder Modal -->
+    <div id="reminderModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" onclick="closeReminderModal()">&times;</span>
+            <h2>🔔 Task Reminder</h2>
+            <p id="reminderText"></p>
+            <div class="modal-actions">
+                <button class="btn-add" onclick="completeReminderTask()">Mark as Done</button>
+                <button class="btn-add" onclick="snoozeReminder()">Snooze 5 min</button>
+                <button class="btn-add" onclick="closeReminderModal()">Dismiss</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../src/scripts.js?v=20260324-music-hub"></script>
+</body>
+</html>
