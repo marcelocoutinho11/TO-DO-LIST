@@ -3,33 +3,41 @@
 A portfolio-ready productivity app built with vanilla HTML, CSS, and JavaScript.
 
 ## What I Built
-This project is a multi-profile task management web app focused on practical UX, mobile usability, and progress visibility.
+Built a multi-profile task management web app focused on execution speed, mobile usability, and progress visibility.
 
-It supports:
+Core capabilities:
 - Profile-specific task spaces (up to 5 users)
 - Daily task tracking with categories, priorities, and due dates
 - Calendar day chips with completion status and task previews
-- Analytics dashboard for completion and activity insights
+- Analytics dashboard for completion trends and streak tracking
 - Mobile-first navigation (hamburger menu + responsive behavior)
 - Built-in focus music presets (YouTube Lo-fi, YouTube Chill Gang, SoundCloud, 5FM)
 
 ## Features
 - Multi-profile local persistence with isolated task data
-- Task CRUD: create, complete, delete, and filter
-- Calendar enhancements:
-   - Status color levels (red/amber/green)
+- Fast task workflow: create, complete, delete, and filter
+- Calendar experience:
+   - Day status color levels (red/amber/green)
    - Up to 8 task chips per day
    - Clickable chips to jump to exact task details
-- Completed task checkmarks directly in calendar chips
-- Legend for interpreting calendar statuses and chip meaning
-- Responsive layout for desktop and mobile
+   - Completed task checkmarks directly in day chips
+- Analytics with completion rate and activity visibility
+- Responsive layout across desktop and mobile
 
 ## Screenshots
-Add screenshots to a `docs/screenshots` folder and update links below.
+These snapshots show the core user flow and key interface areas.
 
-![Home Page](docs/screenshots/home.png)
-![Calendar View](docs/screenshots/calendar.png)
-![Mobile Navigation](docs/screenshots/mobile.png)
+### 1. Dashboard and Task Flow
+![Dashboard and Task Flow](docs/screenshots/home.png)
+Main workspace with profile context, task list interactions, quick add controls, and focus CTA.
+
+### 2. Analytics and Progress Tracking
+![Analytics and Progress Tracking](docs/screenshots/calendar.png)
+Completion metrics, streak visibility, and weekly activity visualization for accountability.
+
+### 3. Calendar Planning View
+![Calendar Planning View](docs/screenshots/mobile.png)
+Month-level planning surface with day cells, completion signals, and fast navigation.
 
 ## Tech Used
 - HTML5
